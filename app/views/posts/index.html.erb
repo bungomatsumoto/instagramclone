@@ -1,2 +1,19 @@
-<h1>Posts#index</h1>
-<p>Find me in app/views/posts/index.html.erb</p>
+<h3>ユーザー投稿一覧</h3>
+
+<p><%= notice %></p>
+
+<% @posts.each do |post| %>
+
+  <div class="one_post">
+    <p class="post_user"><%= image_tag "#", size: '23x23' %><%= post.user.name %></p>
+    <p class="post_content"><%= post.content %></p>
+    <p><%= image_tag post.image.to_s %></p>
+    <div class="post_option">
+      <p><%= link_to '詳細を見る', post_path(post.id) %></p>
+      <p><%= link_to "編集する", edit_post_path(post.id) %></p>
+      <p><%= link_to "削除する", post_path(post.id), method: :delete, data: { confirm: '本当に削除しますか？' }  %></p>
+    </div>
+  </div>
+<% end %>
+
+<p class="to_other_page"><%= link_to '新しく投稿する', new_post_path %></p>
