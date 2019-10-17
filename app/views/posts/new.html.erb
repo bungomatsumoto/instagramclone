@@ -1,0 +1,11 @@
+<%= form_with(model: @post, local: true) do |form| %>
+  <div class="post_content">
+    <%= form.label :本文 %>
+    <%= form.text_area :content %>
+  </div>
+  <div class="post_image">
+    <%= form.label :Image %>
+    <%= form.file_field :image %>
+  </div>
+  <%= form.submit %>
+<% end %>
