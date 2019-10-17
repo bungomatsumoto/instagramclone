@@ -10,6 +10,44 @@
   </head>
 
   <body>
-    <%= yield %>
+    <div class="body_wrapper">
+
+      <header>
+        <div class="header_container">
+            <%# <%= image_tag 'cpu.png', class:'tacostagram_icon' %><span id="header_title">FAKEBOOKS</span> %>
+        </div>
+        <div id="login">
+        <% if logged_in? %>
+          <span class="login_entrance">
+            <%= link_to "プロフィール", user_path(current_user.id) %>
+          </span>
+          <span class="login_entrance">
+            <%= link_to "ログアウト", session_path(current_user.id), method: :delete %>
+          </span>
+        <% else %>
+          <span class="login_entrance">
+            <%= link_to "登録する", new_user_path %>
+          </span>
+          <span class="login_entrance">
+              <%= link_to "ログイン", new_session_path %>
+          </span>
+          <% end %>
+        </div>
+
+      </header>
+
+      <main>
+        <div class="main_container">
+
+        <%= yield %>
+        </div>
+
+      <footer>
+        <div class="footer_container">
+          <p><small>(C)2019 TACOSTAGRAM. All Rights Reserved.</small></p>
+        </div>
+      </footer>
+
+    </div>
   </body>
 </html>
