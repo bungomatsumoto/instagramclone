@@ -12,6 +12,10 @@ class PostsController < ApplicationController
     redirct_to new_post_path
   end
 
+  def show
+    @blog = Blog.find(params[:id])
+  end
+
   private
 
   def post_params
