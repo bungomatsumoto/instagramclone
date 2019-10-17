@@ -8,12 +8,30 @@ class PostsController < ApplicationController
   end
 
   def create
-    Post.create(post_params)
-    redirct_to new_post_path
+    @post = Post.create(post_params)
+    if @post.save
+
+      redirct_to posts_path, notice: "投稿しました"
+    else
+      render :new
+    end
   end
 
   def show
-    @blog = Blog.find(params[:id])
+    @post = Post.find(params[:id])
+  end
+
+  def edit
+    @post = Post.find(params[:id])
+  end
+
+  def update
+    @post = Post.find(params[:id])
+    if @post.update(post_params)
+      redirct_to posts_path, notice: "投稿を編集しました"
+    else
+      render :edit
+    end
   end
 
   private
