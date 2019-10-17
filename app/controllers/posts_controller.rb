@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+  before_action :get_id_post, only: [:show, :edit, :update]
+  
   def index
     @posts = Post.all
   end
@@ -10,8 +12,7 @@ class PostsController < ApplicationController
   def create
     @post = Post.create(post_params)
     if @post.save
-
-      redirct_to posts_path, notice: "投稿しました"
+      redirect_to posts_path, notice: "投稿しました"
     else
       render :new
     end
@@ -28,7 +29,7 @@ class PostsController < ApplicationController
   def update
     @post = Post.find(params[:id])
     if @post.update(post_params)
-      redirct_to posts_path, notice: "投稿を編集しました"
+      redirect_to posts_path, notice: "投稿を編集しました"
     else
       render :edit
     end
@@ -38,5 +39,9 @@ class PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(:content, :image)
+  end
+
+  def get_id_post
+    @post = Post.find(paramns[:id])
   end
 end

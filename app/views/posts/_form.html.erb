@@ -1,0 +1,22 @@
+<%= form_with(model: @post, local: true) do |form| %>
+
+  <% if @post.errors.any? %>
+    <div id="error_explanation">
+      <% @post.errors.full_messages.each do |msg| %>
+        <p><%= msg %></p>
+      <% end %>
+    </div>
+  <% end %>
+
+  <div class="post_content">
+    <%= form.label :content %><br>
+    <%= form.text_area :content %>
+  </div>
+  <div class="post_image">
+    <%= form.label :image %><br>
+    <%= form.file_field :image %>
+  </div>
+  <p><%= form.submit %></p>
+<% end %>
+
+<%= link_to "ユーザー投稿一覧へ", posts_path %>
