@@ -14,8 +14,11 @@
   </div>
   <div class="post_image">
     <%= form.label :image %><br>
+    <%= image_tag(@post.image.url) if @post.image && @post.image.url %>
     <%= form.file_field :image %>
+    <%= form.hidden_field :image_cache %>
   </div>
+  <%= form.hidden_field :user_id, value: current_user.id %>
   <p><%= form.submit %></p>
 <% end %>
 

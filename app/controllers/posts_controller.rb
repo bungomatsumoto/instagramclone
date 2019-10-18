@@ -9,8 +9,15 @@ class PostsController < ApplicationController
     @post = Post.new
   end
 
+  def confirm
+    @post = current_user.posts.build(post_params)
+    # ログイン中のユーザーの、postを、build(new)する
+    render :new if @post.invalid?
+  end
+
   def create
-    @post = Post.create(post_params)
+    @post = current_user.posts.build(post_params)
+    # ログイン中のユーザーの、postを、build(new)する
     if params[:back]
       render :new
     else
@@ -23,6 +30,7 @@ class PostsController < ApplicationController
   end
 
   def show
+    @favorite = current_user.favorites.find_by(post_id: @post.id)
   end
 
   def edit
@@ -40,17 +48,13 @@ class PostsController < ApplicationController
       redirect_to posts_path "投稿を削除しました"
     end
 
-    def confirm
-      @post = Post.new(post_params)
-      render :new if @post.invalid?
-    end
 
   end
 
   private
 
   def post_params
-    params.require(:post).permit(:content, :image)
+    params.require(:post).permit(:user_id, :content, :image, :image_cache)
   end
 
   def get_id_post

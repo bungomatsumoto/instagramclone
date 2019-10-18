@@ -1,4 +1,16 @@
 <h3>詳細画面</h3>
 
-<p>Image: <%= @post.image %></p>
+<p>投稿者: <%= @post.user.name %></p>
+<p>Image: <%= image_tag @post.image.url %></p>
 <p>本文: <%= @post.content %></p>
+
+<% unless @post.user_id == current_user.id %>
+<%# ログインユーザーと投稿ユーザーが同じだとお気に入りは関係ない %>
+  <% if @favorite.present? %>
+    <%= link_to "お気に入り解除する", favorite_path(id: @favorite.id), method: :delete, class: "btn btn-danger" %>
+  <% else %>
+    <%= link_to "お気に入りする", favorites_path(post_id: @post.id), method: :post, class: "btn btn-primary" %>
+  <% end %>
+<% end %>
+
+<p class="to_other_page"><%= link_to "全ユーザーの投稿", posts_path %></p>

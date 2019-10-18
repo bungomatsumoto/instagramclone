@@ -1,0 +1,13 @@
+<h3><%= @user.name %>さんのお気に入り一覧</h3>
+
+<% @favorites.each do |bookmark| %>
+
+  <div>
+    <p class="post_user">投稿者: <%= bookmark.post.user.name %></p>
+    <p class="post_content"><%= bookmark.post.content %></p>
+    <p><%= image_tag bookmark.post.image.to_s %></p>
+  </div>
+
+<% end %>
+
+<p class="to_other_page"><%= link_to '新しく投稿する', new_post_path %></p>
