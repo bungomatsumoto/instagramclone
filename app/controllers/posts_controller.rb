@@ -22,6 +22,7 @@ class PostsController < ApplicationController
       render :new
     else
       if @post.save
+        PostMailer.send_when_post(current_user).deliver
         redirect_to posts_path, notice: "投稿しました"
       else
         render :new

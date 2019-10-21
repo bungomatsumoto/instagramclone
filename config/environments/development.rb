@@ -6,10 +6,8 @@ Rails.application.configure do
   # since you don't have to restart the web server when you make code changes.
   config.cache_classes = false
 
-  # Do not eager load code on boot.
   config.eager_load = false
 
-  # Show full error reports.
   config.consider_all_requests_local = true
 
   # Enable/disable caching. By default caching is disabled.
@@ -34,6 +32,9 @@ Rails.application.configure do
   config.action_mailer.raise_delivery_errors = false
 
   config.action_mailer.perform_caching = false
+
+  config.action_mailer.default_url_options = { host: 'localhost:3000' }
+  config.action_mailer.delivery_method = :letter_opener_web
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log

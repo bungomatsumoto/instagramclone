@@ -1,8 +1,7 @@
-<h3>登録する</h3>
 
 <% if @user.errors.any? %>
   <div id="error_explanation">
-    <h3><%= pluralize(@user.errors.count, "error") %> prohibited this @user from being saved:</h3>
+    <h3><%= pluralize(@user.errors.count, "") %>件のエラーがあります</h3>
     <% @user.errors.full_messages.each do |message| %>
       <p><%= message %></p>
     <% end %>
@@ -11,11 +10,11 @@
 
 <%= form_with(model: @user, local: true) do |f| %>
   <div>
-    <%= f.label :name %><br>
+    <%= f.label :名前 %><br>
     <%= f.text_field :name %>
   </div>
   <div>
-    <%= f.label :avatar %><br>
+    <%= f.label :プロフィール画像 %><br>
     <%= f.file_field :avatar %>
   </div>
   <div>
@@ -23,15 +22,15 @@
     <%= f.email_field :email %>
   </div>
   <div>
-    <%= f.label :password %><br>
+    <%= f.label :パスワード %><br>
     <%= f.password_field :password %>
   </div>
   <div>
-    <%= f.label :password_confirmation %><br>
+    <%= f.label :確認用パスワード %><br>
     <%= f.password_field :password_confirmation %>
   </div>
   <div>
-    <%= f.submit "Create my account" %>
+    <%= f.submit "登録する" %>
   </div>
 <% end %>
 
