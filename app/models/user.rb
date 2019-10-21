@@ -7,4 +7,5 @@ class User < ApplicationRecord
   validates :password, presence: true, length: { minimum: 8 }
   has_many :posts
   has_many :favorites, dependent: :destroy
+  mount_uploader :avatar, AvatarUploader
 end

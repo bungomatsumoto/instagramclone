@@ -10,8 +10,10 @@
     <p><%= image_tag post.image.to_s %></p>
     <div class="post_option">
       <p><%= link_to '詳細を見る', post_path(post.id) %></p>
-      <p><%= link_to "編集する", edit_post_path(post.id) %></p>
-      <p><%= link_to "削除する", post_path(post.id), method: :delete, data: { confirm: '本当に削除しますか？' }  %></p>
+      <% if post.user_id == current_user.id %>
+        <p><%= link_to "編集する", edit_post_path(post.id) %></p>
+        <p><%= link_to "削除する", post_path(post.id), method: :delete, data: { confirm: '本当に削除しますか？' }  %></p>
+      <% end %>
     </div>
   </div>
 <% end %>

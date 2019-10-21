@@ -1,15 +1,23 @@
 <h3><%= @user.name %>さんのページ</h3>
 
-<p>email: <%= @user.email %></p>
+<div class="">
+  <p>プロフィール画像: <%= image_tag(@user.avatar.url) if @user.avatar.present? %></p>
 
-<p class="past_posts">過去の投稿</p>
-<% @user.posts.each do |post| %>
-<div class="past_post">
-  <p><%= post.content %></p>
-  <p><%= image_tag post.image.to_s %></p>
+  <p>email: <%= @user.email %></p>
 </div>
-<% end %>
 
-<p class="to_other_page"><%= link_to 'お気に入り一覧', favorites_path %></p>
-<p class="to_other_page"><%= link_to '新しく投稿する', new_post_path %></p>
-<p class="to_other_page"><%= link_to "全ユーザーの投稿", posts_path %></p>
+<div class="">
+  <p class="past_posts">過去の投稿</p>
+  <% @user.posts.each do |post| %>
+  <div class="past_post">
+    <p><%= post.content %></p>
+    <p><%= image_tag post.image.to_s %></p>
+  </div>
+  <% end %>
+</div>
+
+<div class="">
+  <p class="to_other_page"><%= link_to 'お気に入り一覧', favorites_path %></p>
+  <p class="to_other_page"><%= link_to '新しく投稿する', new_post_path %></p>
+  <p class="to_other_page"><%= link_to "全ユーザーの投稿", posts_path %></p>
+</div>

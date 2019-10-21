@@ -34,6 +34,9 @@ class PostsController < ApplicationController
   end
 
   def edit
+    unless @post.user_id == current_user.id
+      redirect_to new_session_path, notice: "ログインしてください"
+    end
   end
 
   def update
@@ -42,13 +45,14 @@ class PostsController < ApplicationController
     else
       render :edit
     end
+  end
 
-    def destroy
-      @post.destroy
-      redirect_to posts_path "投稿を削除しました"
+  def destroy
+    unless @post.user_id == current_user.id
+      redirect_to new_session_path, notice: "ログインしてください"
     end
-
-
+    @post.destroy
+    redirect_to posts_path "投稿を削除しました"
   end
 
   private
