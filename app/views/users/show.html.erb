@@ -18,6 +18,9 @@
 
 <div class="">
   <p class="to_other_page"><%= link_to 'お気に入り一覧', favorites_path %></p>
-  <p class="to_other_page"><%= link_to '新しく投稿する', new_post_path %></p>
+  <% if @user.id == current_user.id %>
+    <p class="to_other_page"><%= link_to 'プロフィールを編集', edit_user_path(@user.id) %></p>
+    <p class="to_other_page"><%= link_to '新しく投稿する', new_post_path %></p>
+  <% end %>
   <p class="to_other_page"><%= link_to "全ユーザーの投稿", posts_path %></p>
 </div>
