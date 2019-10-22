@@ -1,22 +1,24 @@
 <h3><%= @user.name %>さんのページ</h3>
 
-<div class="">
+<div class="mypage_area">
   <p>プロフィール画像: <%= image_tag(@user.avatar.url) if @user.avatar.present? %></p>
 
   <p>email: <%= @user.email %></p>
 </div>
 
-<div class="">
+<div class="past_posts_area">
   <p class="past_posts">過去の投稿</p>
   <% @user.posts.each do |post| %>
   <div class="past_post">
     <p><%= post.content %></p>
     <p><%= image_tag post.image.to_s %></p>
+    <p class="to_other_page"><%= link_to "編集する", edit_post_path(post.id) %></p>
+    <p class="to_other_page"><%= link_to "削除する", post_path(post.id), method: :delete, data: { confirm: '本当に削除しますか？' }  %></p>
   </div>
   <% end %>
 </div>
 
-<div class="">
+<div class="link_area">
   <p class="to_other_page"><%= link_to 'お気に入り一覧', favorites_path %></p>
   <% if @user.id == current_user.id %>
     <p class="to_other_page"><%= link_to 'プロフィールを編集', edit_user_path(@user.id) %></p>

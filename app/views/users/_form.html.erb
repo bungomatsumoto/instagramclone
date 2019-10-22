@@ -8,30 +8,30 @@
   </div>
 <% end %>
 
+<div class="signup_form">
 <%= form_with(model: @user, local: true) do |f| %>
-  <div>
+  <div class="signup_item">
     <%= f.label :名前 %><br>
     <%= f.text_field :name %>
   </div>
-  <div>
+  <div class="signup_item">
     <%= f.label :プロフィール画像 %><br>
     <%= f.file_field :avatar %>
   </div>
-  <div>
+  <div class="signup_item">
     <%= f.label :email %><br>
     <%= f.email_field :email %>
   </div>
-  <div>
+  <div class="signup_item">
     <%= f.label :パスワード %><br>
     <%= f.password_field :password %>
   </div>
-  <div>
+  <div class="signup_item">
     <%= f.label :確認用パスワード %><br>
     <%= f.password_field :password_confirmation %>
   </div>
-  <div>
+  <div class="button">
     <%= f.submit "登録する" %>
   </div>
 <% end %>
-
-<%= link_to "プロフィールへ", user_path(@user.id) %>
+</div>

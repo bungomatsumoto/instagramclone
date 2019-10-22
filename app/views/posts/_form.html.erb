@@ -19,7 +19,9 @@
     <%= form.hidden_field :image_cache %>
   </div>
   <%= form.hidden_field :user_id, value: current_user.id %>
-  <p><%= form.submit %></p>
+  <div class="button">
+    <p><%= form.submit %></p>
+  </div>
 <% end %>
 
-<%= link_to "ユーザー投稿一覧へ", posts_path %>
+<p class="to_other_page"><%= link_to "ユーザー投稿一覧へ", posts_path %></p>

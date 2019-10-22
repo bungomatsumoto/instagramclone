@@ -7,9 +7,13 @@
 <% unless @post.user_id == current_user.id %>
 <%# ログインユーザーと投稿ユーザーが同じだとお気に入りは関係ない %>
   <% if @favorite.present? %>
-    <%= link_to "お気に入り解除する", favorite_path(id: @favorite.id), method: :delete, class: "btn btn-danger" %>
+    <p class="to_other_page">
+      <%= link_to "お気に入り解除する", favorite_path(id: @favorite.id), method: :delete, class: "btn btn-danger" %>
+    </p>
   <% else %>
-    <%= link_to "お気に入りする", favorites_path(post_id: @post.id), method: :post, class: "btn btn-primary" %>
+    <p class="to_other_page">
+      <%= link_to "お気に入りする", favorites_path(post_id: @post.id), method: :post, class: "btn btn-primary" %>
+    </p>
   <% end %>
 <% end %>
 
