@@ -12,7 +12,7 @@ set :deploy_to, '/var/www/tacostagram'
 set :linked_files, %w{.env config/secrets.yml}
 set :linked_files, %w{log tmp/pids tmp/cache tmp/sockets publick/uploads}
 
-:keep_releases, 5
+set :keep_releases, 5
 
 set :rbenv_ruby, '2.6.3'
 set :rbenv_type, :system
