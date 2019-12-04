@@ -2,6 +2,7 @@ class PostsController < ApplicationController
   before_action :get_id_post, only: [:show, :edit, :update, :destroy]
 
   def index
+    # binding.pry
     @posts = Post.all
   end
 
